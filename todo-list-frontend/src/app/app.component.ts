@@ -1,19 +1,21 @@
-import {Component} from '@angular/core';
-import {Todo, TodoService} from "./todo.service";
-import {Observable} from "rxjs";
+import { Component } from '@angular/core';
+import { Todo, TodoService } from './todo.service';
+import { Observable } from 'rxjs';
+import { tap, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   template: `
     <div class="title">
-      <h1>
-        A list of TODOs
-      </h1>
+      <h1>A list of TODOs</h1>
     </div>
     <div class="list">
       <label for="search">Search...</label>
       <input id="search" type="text">
-      <app-progress-bar></app-progress-bar>
+
+      <!-- Barra de progreso -->
+      <app-progress-bar [loading]="loading"></app-progress-bar>
+
       <app-todo-item *ngFor="let todo of todos$ | async" [item]="todo"></app-todo-item>
     </div>
   `,
@@ -21,9 +23,13 @@ import {Observable} from "rxjs";
 })
 export class AppComponent {
 
-  readonly todos$: Observable<Todo[]>;
+  todos$: Observable<Todo[]>;
+  loading: boolean = true;
 
-  constructor(todoService: TodoService) {
-    this.todos$ = todoService.getAll();
+constructor(todoService: TodoService) {
+  this.loading = true;
+  this.todos$ = todoService.getAll().pipe(
+    tap(() => this.loading = false)
+  );
   }
 }
