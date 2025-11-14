@@ -21,7 +21,8 @@ import { map, tap } from 'rxjs/operators';
       <app-progress-bar [loading]="loading"></app-progress-bar>
       <app-todo-item
         *ngFor="let todo of filteredTodos$ | async"
-        [item]="todo">
+        [item]="todo"
+        (remove)="deleteTodo($event)">
       </app-todo-item>
     </div>
   `,
@@ -55,4 +56,19 @@ export class AppComponent {
   onSearch(value: string) {
     this.search$.next(value);
   }
+
+deleteTodo(id: number) {
+  this.loading = true;
+  this.todoService.remove(id).subscribe({
+    next: () => {
+      const current = this.todosLoaded$.getValue();
+      this.todosLoaded$.next(current.filter(todo => todo.id !== id));
+      this.loading = false;
+    },
+    error: (err) => {
+      this.loading = false;
+      alert('Error trying to remove a TODO: ' + err);
+    }
+  });
+}
 }
