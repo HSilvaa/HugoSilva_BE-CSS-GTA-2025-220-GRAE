@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Todo, TodoService } from './todo.service';
-import { Observable } from 'rxjs';
-import { tap, startWith } from 'rxjs/operators';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,25 +11,48 @@ import { tap, startWith } from 'rxjs/operators';
     </div>
     <div class="list">
       <label for="search">Search...</label>
-      <input id="search" type="text">
-
-      <!-- Barra de progreso -->
+      <input
+        #searchBox
+        id="search"
+        type="text"
+        (input)="onSearch(searchBox.value)"
+        placeholder="Type to filter..."
+      >
       <app-progress-bar [loading]="loading"></app-progress-bar>
-
-      <app-todo-item *ngFor="let todo of todos$ | async" [item]="todo"></app-todo-item>
+      <app-todo-item
+        *ngFor="let todo of filteredTodos$ | async"
+        [item]="todo">
+      </app-todo-item>
     </div>
   `,
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
 
-  todos$: Observable<Todo[]>;
+  private search$ = new BehaviorSubject<string>('');
+  private todosLoaded$ = new BehaviorSubject<Todo[]>([]);
+
+  filteredTodos$: Observable<Todo[]>;
   loading: boolean = true;
 
-constructor(todoService: TodoService) {
-  this.loading = true;
-  this.todos$ = todoService.getAll().pipe(
-    tap(() => this.loading = false)
-  );
+  constructor(private todoService: TodoService) {
+    this.todoService.getAll().pipe(
+      tap(todos => {
+        this.todosLoaded$.next(todos);
+        this.loading = false;
+      })
+    ).subscribe();
+
+    this.filteredTodos$ = combineLatest([this.todosLoaded$, this.search$]).pipe(
+      map(([todos, searchTerm]) =>
+        todos.filter(todo =>
+          todo.task.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      )
+    );
+  }
+
+  onSearch(value: string) {
+    this.search$.next(value);
   }
 }
