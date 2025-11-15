@@ -23,6 +23,7 @@ public class TodoController {
         this.adapter = adapter;
     }
 
+    //I'm aware it's not used, although future implementations might need it
     @PostMapping
     public ResponseEntity<TodoResponse> create(@RequestBody TodoRequest request) {
         Todo todo = TodoRequestMapper.toDomain(request);
@@ -32,6 +33,7 @@ public class TodoController {
                 .body(TodoResponseMapper.toResponse(saved));
     }
 
+    //I'm aware it's not used, although future implementations might need it
     @GetMapping("/{id}")
     public ResponseEntity<TodoResponse> getById(@PathVariable Long id) throws NotFoundException {
         return ResponseEntity

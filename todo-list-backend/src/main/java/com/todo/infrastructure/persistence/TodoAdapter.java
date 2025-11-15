@@ -4,11 +4,9 @@ import com.todo.domain.Todo;
 import com.todo.domain.exception.TodoNotFoundException;
 import com.todo.infrastructure.persistence.entity.TodoEntity;
 import com.todo.infrastructure.persistence.mapper.TodoMapper;
-import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TodoAdapter{

@@ -1,5 +1,5 @@
 plugins {
-    id 'java' // Cambiado de java-library a java
+    id 'java'
     id 'org.springframework.boot' version '2.3.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 }
@@ -21,4 +21,8 @@ dependencies {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
 }

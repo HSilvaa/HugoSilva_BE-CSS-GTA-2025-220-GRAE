@@ -10,17 +10,17 @@ com/todo/domain/DTO/TodoRequest.java
  com.todo.domain.DTO.TodoRequest
 com/todo/TodoApplication.java
  com.todo.TodoApplication
-com/todo/domain/mapper/TodoResponseMapper.java
- com.todo.domain.mapper.TodoResponseMapper
+com/todo/infrastructure/persistence/TodoAdapter.java
+ com.todo.infrastructure.persistence.TodoAdapter
 com/todo/infrastructure/persistence/mapper/TodoMapper.java
  com.todo.infrastructure.persistence.mapper.TodoMapper
 com/todo/infrastructure/persistence/entity/TodoEntity.java
  com.todo.infrastructure.persistence.entity.TodoEntity
 com/todo/infrastructure/http/GlobalExceptionHandler.java
  com.todo.infrastructure.http.GlobalExceptionHandler
-com/todo/infrastructure/persistence/TodoAdapter.java
- com.todo.infrastructure.persistence.TodoAdapter
 com/todo/domain/exception/TodoNotFoundException.java
  com.todo.domain.exception.TodoNotFoundException
+com/todo/domain/mapper/TodoResponseMapper.java
+ com.todo.domain.mapper.TodoResponseMapper
 com/todo/infrastructure/http/TodoController.java
  com.todo.infrastructure.http.TodoController

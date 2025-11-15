@@ -1,7 +1,6 @@
 package com.todo.domain.mapper;
 
 import com.todo.domain.DTO.TodoResponse;
-import com.todo.domain.Todo;
 import com.todo.infrastructure.persistence.entity.TodoEntity;
 
 import java.util.List;

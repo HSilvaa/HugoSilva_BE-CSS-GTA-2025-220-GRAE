@@ -1,0 +1,8 @@
+com/todo/infrastructure/persistence/TodoAdapterTest.java
+ com.todo.infrastructure.persistence.TodoAdapterTest
+com/todo/infrastructure/http/TodoControllerIT.java
+ com.todo.infrastructure.http.TodoControllerIT
+com/todo/infrastructure/http/TodoControllerTest.java
+ com.todo.infrastructure.http.TodoControllerTest
+com/todo/infrastructure/persistence/TodoAdapterIT.java
+ com.todo.infrastructure.persistence.TodoAdapterIT
