@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "d91dad88-45b7-492c-b014-ee65470ae04d",
+		"name": "CERN API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42924356",
+		"_collection_link": "https://winter-capsule-134243.postman.co/workspace/CERN~bbe614cf-25f8-43bc-b31b-deca4360db0e/collection/42924356-d91dad88-45b7-492c-b014-ee65470ae04d?action=share&source=collection_link&creator=42924356"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8099/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"task\": \"PRUEBA ADD\",\r\n    \"priority\": 1\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8099/api/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\r\n        \"task\": \"TRYING ADDING TASK\",\r\n        \"priority\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8099/api/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8099",
+					"path": [
+						"api",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
